@@ -12,6 +12,7 @@ const LoadCache = new Set()
 
 export interface ScriptProps extends ScriptHTMLAttributes<HTMLScriptElement> {
   strategy?: 'afterInteractive' | 'lazyOnload' | 'beforeInteractive' | 'worker'
+  scriptType?: string
   id?: string
   onLoad?: (e: any) => void
   onReady?: () => void | null
@@ -42,6 +43,7 @@ const loadScript = (props: ScriptProps): void => {
     dangerouslySetInnerHTML,
     children = '',
     strategy = 'afterInteractive',
+    scriptType = 'text/javascript',
     onError,
   } = props
 
@@ -126,6 +128,7 @@ const loadScript = (props: ScriptProps): void => {
   }
 
   el.setAttribute('data-nscript', strategy)
+  el.setAttribute('type', scriptType)
 
   document.body.appendChild(el)
 }
