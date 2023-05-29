@@ -125,10 +125,11 @@ const loadScript = (props: ScriptProps): void => {
 
   if (strategy === 'worker') {
     el.setAttribute('type', 'text/partytown')
+  } else {
+    el.setAttribute('type', scriptType)
   }
 
   el.setAttribute('data-nscript', strategy)
-  el.setAttribute('type', scriptType)
 
   document.body.appendChild(el)
 }
